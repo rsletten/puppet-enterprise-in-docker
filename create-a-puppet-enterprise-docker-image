@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ####### Variables
-PE_VERSION="2016.4.0"
-IMAGE_NAME="jefferyb/puppet-enterprise:${PE_VERSION}"
-PUPPET_MASTER_HOSTNAME="puppet.example.com"
+PE_VERSION="2016.4.15"
+IMAGE_NAME="rsletten/puppet-enterprise:${PE_VERSION}"
+PUPPET_MASTER_HOSTNAME="puppet.rsletten.com"
 ####### End Variables #######
 
 # Make sure we have the latest version of ubuntu:14.04
@@ -17,6 +17,7 @@ docker exec -it create-puppet-image /root/puppet/install-puppet-in-docker
 
 # Create our puppet enterprise image
 docker stop create-puppet-image
+# ^^^^^^ this doesn't seem to actually stop the image.. have to reboot
 docker commit \
 -c 'EXPOSE 443' \
 -c 'EXPOSE 8140' \
@@ -32,7 +33,7 @@ create-puppet-image  ${IMAGE_NAME}
 docker rm -fv test-puppet-enterprise
 docker run -d \
 -h ${PUPPET_MASTER_HOSTNAME} \
---name test-puppet-enterprise \
+--name puppet-enterprise \
 -e 'AUTOSIGN=true' \
 -e 'TERM=xterm' \
 -e 'TZ=America/Chicago' \
@@ -46,5 +47,5 @@ docker run -d \
 ${IMAGE_NAME}
 
 # Check the logs
-docker logs -f test-puppet-enterprise
+docker logs -f puppet-enterprise
 

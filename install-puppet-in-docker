@@ -1,10 +1,10 @@
 #!/bin/bash
 
 ####### Variables
-PE_VERSION="2016.4.0"
-IMAGE_NAME="jefferyb/puppet-enterprise:${PE_VERSION}"
-ADMIN_PASSWORD="welcometopuppet"
-PUPPET_MASTER_HOSTNAME="puppet.example.com"
+PE_VERSION="2016.4.15"
+IMAGE_NAME="rsletten/puppet-enterprise:${PE_VERSION}"
+ADMIN_PASSWORD="puppetr0cks"
+PUPPET_MASTER_HOSTNAME="puppet.rsletten.com"
 PE_DOWNLOAD_LINK="LINK_TO_PE_DOWNLOAD"
 TIMEZONE="America/Chicago"
 ####### End Variables #######
